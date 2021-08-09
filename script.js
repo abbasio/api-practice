@@ -1,4 +1,4 @@
-const apiURL = 'http://openlibrary.org/search.json?q=the+lord+of+the+rings';
+const apiURL = 'https://openlibrary.org/search.json?q=the+lord+of+the+rings';
 
 
 async function getData() {
@@ -52,6 +52,10 @@ async function getPublishYear(lower, upper) {
     newBookArray.sort(function (a, b) {
         return a.first_publish_year - b.first_publish_year;
     });
+
+    if (!newBookArray.length) {
+        container.textContent = "No LOTR material published within the date range specified";
+    }
 
     newBookArray.forEach((element) => {
         const bookData = document.createElement('div');
